@@ -12,6 +12,8 @@ const app = express()
 //app.use(express.static(path.join(__dirname, 'web')))
 app.use(express.json()) //app.use = aplica lo que esta entre () a todas las peticiones que lleguen a la app. (convierte el body de la peticion que viene en formato JSON a objetos js y lo deja disponible en el req.body)
 app.disable('x-powered-by') // desabilita el header x-powered-By: Express
+
+
 app.use(cors({
     origin: (origin,callback) =>{
         const ACCEPTED_ORIGINS = [
