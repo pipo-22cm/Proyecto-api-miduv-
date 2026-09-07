@@ -3,9 +3,13 @@ import crypto from 'node:crypto' //CREAR ID UNICAS
 import { validateMovie, validatePartialMovie } from './schemas/movies.js' //IMPORTAMOS EL SCHEMA DE VALIDACIONES
 import movies from './movies.json' with { type: 'json' }
 import cors from 'cors'
-
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 const app = express()
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+app.use(express.static(path.join(__dirname, 'web')))
 app.use(express.json()) //app.use = aplica lo que esta entre () a todas las peticiones que lleguen a la app. (convierte el body de la peticion que viene en formato JSON a objetos js y lo deja disponible en el req.body)
 app.disable('x-powered-by') // desabilita el header x-powered-By: Express
 app.use(cors({
