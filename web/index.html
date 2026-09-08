@@ -18,8 +18,8 @@
     }
 </style>
 <script type="module">
-//fetch('/movies')
-fetch('http://localhost:1234')
+fetch('/movies')
+//fetch('http://localhost:1234')
     .then(res => res.json())
     .then(movies => {
     const html = movies.map(movie => `
@@ -38,8 +38,8 @@ document.addEventListener('click', e => {
     const article = e.target.closest('article')
     const id = article.dataset.id
 
-    //fetch(`/movies/${id}`
-    fetch(`http://localhost:1234${id}`, {
+    //fetch(`/movies/${id}`{
+    fetch(`/movies/${id}`, {
         method: 'DELETE'
     })
         .then(res => res.json())
