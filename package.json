@@ -8,8 +8,9 @@
     "zod": "4.5.1"
   },
   "scripts": {
-    "start:mysql": "node --env-file=.env MVC/web/server-with-mysql.js",
-    "start:local": "node MVC/web/server-with-local.js",
+    "start:local": "node --env-file=.env MVC/web/server-with-mysql.js",
+    "start:mysql": "node MVC/web/server-with-mysql.js",
+    "start:local2": "node MVC/web/server-with-local.js",
     "start": "node MVC/app.js"
   }
 }
