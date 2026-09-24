@@ -1,3 +1,4 @@
+create database movies_db;
 use movies_db;
 
 CREATE TABLE movie (
@@ -24,9 +25,9 @@ CREATE TABLE movie_genres (
 INSERT INTO genre (name) VALUES ('Drama'),('Action'),('Crime'),('Adventure'),('Sci-Fi'),('Romance');
 
 INSERT INTO movie (id,title,year,director,duration,poster,rate) VALUES 
-(UUID_TO_BIN(UUID()), "Inception", 2010, "Christopher Nolan", 180, "https://m.media-amazon.com/images/I/91Rc8cAmnAL._AC_UF1000,1000_QL80_.jpg",8.8),
-(UUID_TO_BIN(UUID()), "The Shawshank Redemption", 1994, "Frank Darabont", 142, "https://i.ebayimg.com/images/g/4goAAOSwMyBe7hnQ/s-l1200.webp",9.3),
-(UUID_TO_BIN(UUID()), "The Dark Knight", 2008, "Christopher Nolan", 152, "https://i.ebayimg.com/images/g/yokAAOSw8w1YARbm/s-l1200.jpg",9.0);
+(UUID_TO_BIN(UUID()), 'Inception', 2010, 'Christopher Nolan', 180,'https://m.media-amazon.com/images/I/91Rc8cAmnAL._AC_UF1000,1000_QL80_.jpg',8.8),
+(UUID_TO_BIN(UUID()), 'The Shawshank Redemption', 1994, 'Frank Darabont', 142, 'https://i.ebayimg.com/images/g/4goAAOSwMyBe7hnQ/s-l1200.webp',9.3),
+(UUID_TO_BIN(UUID()), 'The Dark Knight', 2008, 'Christopher Nolan', 152, 'https://i.ebayimg.com/images/g/yokAAOSw8w1YARbm/s-l1200.jpg',9.0);
 
 INSERT INTO movie_genres (movie_id, genre_id)
 VALUES

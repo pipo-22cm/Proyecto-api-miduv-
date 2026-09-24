@@ -1,8 +1,18 @@
 import mysql from 'mysql2/promise';
 //import crypto from 'node:crypto';
-import fs from 'node:fs'
-import path from 'node:path'
+import fs from 'node:fs';
+import path from 'node:path';
 
+const DEFAULTO_CONFIG = {
+    host: 'localhost',
+    user: 'root',
+    port: '3306',
+    password: '',
+    database: 'movies_db',
+}
+
+const connectionString = process.env.DB_DATABASE_URL ?? DEFAULTO_CONFIG //Connecion DB LOCAL
+const connectionLocal = await mysql.createConnection(connectionString)//Connecion DB LOCAL
 
 const config = {
     host: process.env.DB_HOST,
@@ -11,7 +21,8 @@ const config = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     ssl: {
-        ca: fs.readFileSync(path.join(import.meta.dirname, '../../ca.pem'))
+        ca: fs.readFileSync(path.join(import.meta.dirname, '../../ca.pem')),
+        rejectUnauthorized: false
     }
 }
 
@@ -30,7 +41,7 @@ export class MovieModel {
 static async getAll ({ genre }) {
 
     if(genre){
-        const [movies] = await connection.query(
+        const [movies] = await connectionLocal.query(
         'SELECT movie.title, movie.year, movie.director, movie.duration, movie.poster, movie.rate, BIN_TO_UUID(movie.id) id FROM movie JOIN movie_genres ON movie.id = movie_genres.movie_id JOIN genre ON movie_genres.genre_id = genre.id WHERE genre.name = ?',[genre])
         return movies;
     }else{
