@@ -41,7 +41,7 @@ export class MovieModel {
 static async getAll ({ genre }) {
 
     if(genre){
-        const [movies] = await connectionLocal.query(
+        const [movies] = await connection.query(
         'SELECT movie.title, movie.year, movie.director, movie.duration, movie.poster, movie.rate, BIN_TO_UUID(movie.id) id FROM movie JOIN movie_genres ON movie.id = movie_genres.movie_id JOIN genre ON movie_genres.genre_id = genre.id WHERE genre.name = ?',[genre])
         return movies;
     }else{
