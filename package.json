@@ -4,9 +4,12 @@
     "cors": "^2.8.6",
     "express": "5.2.1",
     "mongodb": "7.6.0",
+    "mysql2": "^3.24.4",
     "zod": "4.5.1"
   },
   "scripts": {
-    "start": "node app.js"
+    "start:mysql": "node --env-file=.env MVC/web/server-with-mysql.js",
+    "start:local": "node MVC/web/server-with-local.js",
+    "start": "node MVC/app.js"
   }
 }

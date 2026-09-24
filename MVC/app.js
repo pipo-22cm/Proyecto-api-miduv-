@@ -1,15 +1,21 @@
 // app.js (en la raíz de MVC)
 import express from 'express'
-import { moviesRouter } from './routes/movies.js'
+import { createMoviesRouter } from './routes/movies.js'
+import { corsMiddleware } from './middlewares/cors.js'
 
-const app = express()
-app.use(express.json())
-app.disable('x-powered-by')
 
-app.use('/movies', moviesRouter)
+export const createApp = ({ movieModel }) => {
+    const app = express()
+    app.use(express.json()) 
+    app.disable('x-powered-by')
 
-const PORT = process.env.PORT ?? 1234
+    app.use('/movies', createMoviesRouter ({ movieModel}))
 
-app.listen(PORT, () => {
-    console.log(`Servidor escuchando en http://localhost:${PORT}`)
+    const PORT = process.env.PORT ?? 1234
+
+    app.listen(PORT, () => {
+        console.log(`Servidor escuchando en http://localhost:${PORT}`)
 })
+}
+
+
